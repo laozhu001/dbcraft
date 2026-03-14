@@ -44,6 +44,7 @@ Start here if you want release guidance or listing copy:
 
 - [Marketplace Copy](./marketplace-docs/marketplace-copy.md)
 - [Marketplace Submission Fields](./marketplace-docs/marketplace-submission-fields.md)
+- [市场提交字段（中文）](./marketplace-docs/marketplace-submission-fields.zh-CN.md)
 - [Install Prerequisites](./marketplace-docs/install-prerequisites.md)
 - [Data Security](./marketplace-docs/data-security.md)
 - [Marketplace Submission Checklist](./marketplace-docs/marketplace-submission-checklist.md)
