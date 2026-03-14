@@ -8,7 +8,7 @@ Use this checklist before submitting DB Craft to the marketplace. The goal is to
 - Runtime: local Node.js available in `PATH`
 - Browser: Chromium/Chrome/Edge
 - Package under test:
-  - `D:\DBdesigner\marketplace-assets\dbcraft-marketplace-submission.zip`
+  - `dbcraft-marketplace-submission.zip`
 
 ## Pass Criteria
 

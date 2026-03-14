@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DB Craft Help</title>
+  <style>
+    :root {
+      --bg: #eef4fb;
+      --surface: rgba(255, 255, 255, 0.9);
+      --surface-border: rgba(24, 57, 118, 0.12);
+      --text: #142235;
+      --subtext: #5a697c;
+      --primary: #0f62fe;
+      --primary-soft: rgba(15, 98, 254, 0.12);
+      --accent: #0f9d8a;
+      --shadow: 0 20px 60px rgba(16, 32, 64, 0.14);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(15, 98, 254, 0.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(15, 157, 138, 0.14), transparent 28%),
+        linear-gradient(180deg, #f9fbfe 0%, var(--bg) 100%);
+    }
+
+    code {
+      padding: 0 6px;
+      border-radius: 8px;
+      background: rgba(17, 31, 56, 0.08);
+      font-family: "Cascadia Code", Consolas, monospace;
+      font-size: 0.95em;
+    }
+
+    .page {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 52px;
+    }
+
+    .hero {
+      padding: 34px;
+      border-radius: 30px;
+      color: #fff;
+      background: linear-gradient(135deg, #112548 0%, #1846a7 54%, #0f62fe 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .hero-brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.14);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.05;
+    }
+
+    .hero p {
+      margin: 10px 0 0;
+      max-width: 760px;
+      color: rgba(255, 255, 255, 0.84);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .lang-pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.9);
+      white-space: nowrap;
+    }
+
+    .hero-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .hero-card {
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .hero-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .hero-card span {
+      display: block;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .section {
+      padding: 24px;
+    }
+
+    .section h2 {
+      margin: 0 0 16px;
+      font-size: 23px;
+    }
+
+    .steps,
+    .feature-list,
+    .shortcut-list,
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .step,
+    .feature-item,
+    .shortcut-item,
+    .faq-item {
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background: #fff;
+      border: 1px solid rgba(17, 35, 68, 0.07);
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 14px;
+    }
+
+    .step-no {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-sm);
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .step h3,
+    .feature-item h3,
+    .shortcut-item h3,
+    .faq-item h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .step p,
+    .feature-item p,
+    .shortcut-item p,
+    .faq-item p {
+      margin: 0;
+      color: var(--subtext);
+      line-height: 1.75;
+      font-size: 14px;
+    }
+
+    .chip-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #edf4ff;
+      color: #1f54ba;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .shortcut-key {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 92px;
+      margin-right: 10px;
+      padding: 6px 10px;
+      border-radius: 12px;
+      background: #0f172a;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(15, 157, 138, 0.11), rgba(15, 98, 254, 0.08));
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      padding: 18px 22px;
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid var(--surface-border);
+      box-shadow: var(--shadow);
+      color: var(--subtext);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .footer-note strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    @media (max-width: 860px) {
+      .page {
+        width: min(100%, calc(100% - 20px));
+        padding-top: 18px;
+        padding-bottom: 28px;
+      }
+
+      .hero,
+      .section {
+        padding: 20px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-head">
+        <div class="hero-brand">
+          <div class="badge">DB</div>
+          <div>
+            <h1 id="heroTitle"></h1>
+            <p id="heroSubtitle"></p>
+          </div>
+        </div>
+        <div class="lang-pill" id="languagePill"></div>
+      </div>
+      <div class="hero-cards" id="heroCards"></div>
+    </section>
+
+    <section class="grid">
+      <div class="card section">
+        <h2 id="quickStartTitle"></h2>
+        <div class="steps" id="quickStartList"></div>
+        <div class="note" id="quickStartNote"></div>
+      </div>
+
+      <div class="card section">
+        <h2 id="featureTitle"></h2>
+        <div class="feature-list" id="featureList"></div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card section">
+        <h2 id="shortcutTitle"></h2>
+        <div class="shortcut-list" id="shortcutList"></div>
+      </div>
+
+      <div class="card section">
+        <h2 id="faqTitle"></h2>
+        <div class="faq-list" id="faqList"></div>
+      </div>
+    </section>
+
+    <section class="footer-note">
+      <strong id="licenseTitle"></strong>
+      <div id="licenseText"></div>
+    </section>
+  </main>
+
+  <script>
+    const MANUAL_LANGUAGE_KEY = "dbdesigner.ui.language";
+    const SUPPORTED_LANGUAGES = ["zh-CN", "en-US", "fr-FR"];
+    const DEFAULT_LANGUAGE = "en-US";
+
+    const MANUAL_I18N = {
+      "zh-CN": {
+        pageTitle: "DB Craft 操作手册",
+        languageLabel: "当前语言：简体中文",
+        heroTitle: "DB Craft 操作手册",
+        heroSubtitle: "适用于 DB Craft 本地版。点击设计器里的“帮助”会打开本页，方便边看边建模，不打断当前编辑。下面这版已经按最新产品能力更新，包括工程同步、自动保存、交给 Codex、AI 模型预设和 SQL 预览。",
+        heroCards: [
+          { title: "推荐主流程", text: "新建或打开模型 -> 加表 / AI建表 -> 建关系 -> 语法检查 -> 同步 -> 预览 SQL" },
+          { title: "工程同步", text: "同步会直接把模型和 SQL 写回当前工程目录。正常情况下不需要再做浏览器目录授权。" },
+          { title: "Codex 接力", text: "点击“交给Codex”会把交接内容写入工程里的 dbcraft-codex-handoff.md，之后你可以直接说“按交接文件继续”。" },
+          { title: "模板字段规则", text: "AI建表、脚本建表和手动加表都会补充模板字段；模板字段默认保留，除非你明确删除。" },
+          { title: "开源协议", text: "DB Craft 现已采用 MIT License。你可以在根目录的 LICENSE 文件中查看完整授权文本。" }
+        ],
+        quickStartTitle: "快速上手",
+        quickStartNote: "如果你在工程对话里让 Codex 新建或改表，DB Craft 会优先以工程目录中的 .dbmodel.json 为准；当前页面也会尽量自动跟上，不用你反复手动刷新。",
+        quickStartSteps: [
+          {
+            title: "确认当前工程",
+            text: "顶部会显示“当前工程”“工程路径”“当前模型文件”。这三项就是当前图和工程文件的连接关系。",
+            chips: ["当前工程", "工程路径", "当前模型文件"]
+          },
+          {
+            title: "新建或打开模型",
+            text: "左侧输入模型名称并选择数据库类型后点“新建模型”；也可以点“文件 -> 打开”直接读取当前工程中的 .dbmodel.json。",
+            chips: ["MySQL 8", "PostgreSQL 14", "SQLite", "MSSQL"]
+          },
+          {
+            title: "开始建模",
+            text: "你可以用“加表”手工建模，也可以用“脚本建表”粘贴 CREATE TABLE，或用“AI建表”根据描述生成表草稿。",
+          },
+          {
+            title: "建关系和调整布局",
+            text: "通过画布四周锚点拖拽建关系，或者在右侧“关系管理”里添加；画布乱时点“自动排列表”，再点“适配”。",
+          },
+          {
+            title: "同步并查看 SQL",
+            text: "点“同步”后，模型和 SQL 会写入当前工程目录，同时在页面里直接弹出 SQL 预览，方便立刻复制或检查。",
+          }
+        ],
+        featureTitle: "关键新特性",
+        features: [
+          {
+            title: "同步到当前工程",
+            text: "同步不再依赖浏览器目录授权。DB Craft 会把当前模型写回当前工程目录，并生成同名 SQL 文件。"
+          },
+          {
+            title: "自动保存模型",
+            text: "在页面里编辑表、字段、关系或布局后，停顿约 1.2 秒会自动保存 .dbmodel.json，减少忘记保存的风险。"
+          },
+          {
+            title: "自动刷新当前图",
+            text: "如果当前工程里的模型文件被更新，页面会尽量把最新模型拉回当前图，避免你每次都手动刷新浏览器。"
+          },
+          {
+            title: "AI 模型预设",
+            text: "AI配置和 AI建表都内置主流模型预设，可选 OpenAI、Kimi、DeepSeek、Qwen，并支持自定义 Base URL。"
+          },
+          {
+            title: "没有 API Key 也能继续",
+            text: "AI建表里可以走“复制给Codex生成”兜底。设计器会整理需求并写入 dbcraft-codex-handoff.md，方便 Codex 继续处理。"
+          },
+          {
+            title: "模板字段自动补充",
+            text: "AI建表和脚本建表都会自动补模板字段，并避免和 AI 或 SQL 已生成的字段发生重名冲突。"
+          }
+        ],
+        shortcutTitle: "快捷键",
+        shortcuts: [
+          { key: "Ctrl+S", title: "保存模型", text: "手动保存当前模型到工程目录。" },
+          { key: "Ctrl+Alt+S", title: "同步", text: "把当前模型和 SQL 同步回当前工程，并弹出 SQL 预览。" },
+          { key: "Ctrl+O", title: "打开模型", text: "从当前工程中选择一个已存在的模型文件。" },
+          { key: "Alt+A", title: "增加表", text: "快速新建一张表。" },
+          { key: "Alt+L", title: "AI建表", text: "根据业务描述生成表草稿，或转交给 Codex。" },
+          { key: "Alt+J", title: "脚本建表", text: "粘贴 CREATE TABLE 脚本生成表结构。" },
+          { key: "Alt+Q", title: "语法检查", text: "检查模型中的字段和索引定义是否有问题。" },
+          { key: "Ctrl+Alt+E", title: "导出 SQL", text: "导出当前数据库类型对应的建表 SQL。" },
+          { key: "F1", title: "帮助", text: "打开当前这份帮助页。" }
+        ],
+        faqTitle: "常见问题",
+        faqs: [
+          {
+            title: "为什么我在对话里让 Codex 改了表，图里没立刻变化？",
+            text: "DB Craft 现在会优先跟工程里的 .dbmodel.json 保持一致，并尽量自动刷新；如果你当前页面还在编辑同一个模型，自动刷新会更谨慎，避免覆盖你未提交的页面改动。"
+          },
+          {
+            title: "为什么会看到 Field1 之类的字段？",
+            text: "这是模板字段的一部分。当前规则是默认保留模板字段，AI建表和脚本建表也会补上它们。"
+          },
+          {
+            title: "没有 API Key 时还能用 AI建表吗？",
+            text: "可以。直接点“复制给Codex生成”即可，设计器会生成交接说明并写入工程目录中的 dbcraft-codex-handoff.md。"
+          },
+          {
+            title: "帮助页为什么会跟随语言切换？",
+            text: "帮助页会优先读取 URL 里的 lang 参数；如果没有，再读取设计器保存的界面语言设置，所以和 DB Craft 的语言保持一致。"
+          }
+        ],
+        licenseTitle: "开源许可",
+        licenseText: "DB Craft 采用 MIT License 发布。你可以自由使用、修改、分发和商业使用本软件，但必须在副本或重要部分中保留版权声明与本许可文本。完整条款请查看 DB Craft 根目录下的 LICENSE 文件。"
+      },
+      "en-US": {
+        pageTitle: "DB Craft Help",
+        languageLabel: "Language: English",
+        heroTitle: "DB Craft Help",
+        heroSubtitle: "This page is opened from the Help entry inside DB Craft, so you can read while modeling without interrupting your current work. It has been updated for the latest project-aware sync, auto-save, Codex handoff, AI model presets, and SQL preview flow.",
+        heroCards: [
+          { title: "Recommended Flow", text: "Create or open a model -> Add table / AI build -> Add relations -> Syntax check -> Sync -> Review SQL" },
+          { title: "Project Sync", text: "Sync writes the model and SQL directly into the current project directory. Browser directory authorization is usually no longer required." },
+          { title: "Codex Handoff", text: "The Send to Codex entry writes a handoff file named dbcraft-codex-handoff.md into the current project so Codex can continue from it." },
+          { title: "Template Field Rule", text: "Template fields are appended to manual tables, AI-generated tables, and SQL-imported tables. They are kept by default unless you remove them explicitly." },
+          { title: "Open-source License", text: "DB Craft is now released under the MIT License. The full license text is available in the LICENSE file in the project root." }
+        ],
+        quickStartTitle: "Quick Start",
+        quickStartNote: "When Codex creates or edits tables for this project, DB Craft treats the .dbmodel.json file in the project directory as the source of truth, and the current page tries to follow it automatically.",
+        quickStartSteps: [
+          {
+            title: "Confirm the Current Project",
+            text: "The top area shows the current project, project path, and current model file. These are the key indicators of where your diagram is stored.",
+            chips: ["Current Project", "Project Path", "Current Model File"]
+          },
+          {
+            title: "Create or Open a Model",
+            text: "Enter a model name on the left and choose a database type to create one, or use File -> Open to load an existing .dbmodel.json from the current project.",
+            chips: ["MySQL 8", "PostgreSQL 14", "SQLite", "MSSQL"]
+          },
+          {
+            title: "Start Modeling",
+            text: "Use Add Table for manual design, Build from SQL to paste CREATE TABLE, or AI Build to generate a first draft from a requirement.",
+          },
+          {
+            title: "Add Relations and Tidy the Canvas",
+            text: "Create relations by dragging the anchor points on the table cards, or use Relation Management in the inspector. Use Auto Layout and Fit when the canvas gets messy.",
+          },
+          {
+            title: "Sync and Review SQL",
+            text: "The Sync action writes both the model and SQL into the current project and immediately opens a SQL preview dialog inside DB Craft.",
+          }
+        ],
+        featureTitle: "Key Features",
+        features: [
+          {
+            title: "Sync to the Current Project",
+            text: "Sync no longer depends on browser directory authorization. DB Craft writes the current model back into the active project and generates the matching SQL file."
+          },
+          {
+            title: "Auto-save the Model",
+            text: "When you edit tables, fields, relations, or layout, DB Craft auto-saves the .dbmodel.json after a short idle delay, reducing the chance of losing work."
+          },
+          {
+            title: "Auto-refresh the Current Diagram",
+            text: "If the model file changes in the project, DB Craft tries to pull the latest version back into the current page so you do not have to refresh the browser manually every time."
+          },
+          {
+            title: "AI Model Presets",
+            text: "AI Config and AI Build include presets for OpenAI, Kimi, DeepSeek, and Qwen, and also support a custom compatible Base URL."
+          },
+          {
+            title: "Continue Without an API Key",
+            text: "AI Build can fall back to Send to Codex. DB Craft prepares the request and writes dbcraft-codex-handoff.md so Codex can continue from it."
+          },
+          {
+            title: "Template Fields Are Appended Automatically",
+            text: "AI-generated tables and SQL-imported tables also receive the global template fields, while avoiding duplicates with existing generated columns."
+          }
+        ],
+        shortcutTitle: "Shortcuts",
+        shortcuts: [
+          { key: "Ctrl+S", title: "Save Model", text: "Save the current model into the project directory." },
+          { key: "Ctrl+Alt+S", title: "Sync", text: "Write the current model and SQL back to the project and open the SQL preview." },
+          { key: "Ctrl+O", title: "Open Model", text: "Open an existing model file from the current project." },
+          { key: "Alt+A", title: "Add Table", text: "Create a new table quickly." },
+          { key: "Alt+L", title: "AI Build", text: "Generate a first schema draft from a requirement or hand the task off to Codex." },
+          { key: "Alt+J", title: "Build from SQL", text: "Paste CREATE TABLE SQL and generate table cards." },
+          { key: "Alt+Q", title: "Syntax Check", text: "Validate fields, indexes, and related definitions in the current model." },
+          { key: "Ctrl+Alt+E", title: "Export SQL", text: "Export SQL for the current database type." },
+          { key: "F1", title: "Help", text: "Open this help page." }
+        ],
+        faqTitle: "FAQ",
+        faqs: [
+          {
+            title: "Why did Codex change the model, but my diagram did not update immediately?",
+            text: "DB Craft now treats the project .dbmodel.json as the source of truth and tries to auto-refresh the current page. If you are editing the same model locally, the refresh behaves more carefully to avoid overwriting in-page changes."
+          },
+          {
+            title: "Why do I still see fields such as Field1?",
+            text: "They come from the global template fields. The current rule is to keep template fields by default, including for AI Build and SQL Build."
+          },
+          {
+            title: "Can I still use AI Build without an API key?",
+            text: "Yes. Use Send to Codex from the dialog. DB Craft writes a handoff file named dbcraft-codex-handoff.md into the project for the next step."
+          },
+          {
+            title: "Why does this help page follow the UI language?",
+            text: "The page reads the lang query parameter first. If it is missing, it falls back to the language saved by DB Craft, so the manual stays aligned with the app."
+          }
+        ],
+        licenseTitle: "Open-source License",
+        licenseText: "DB Craft is distributed under the MIT License. You may use, modify, distribute, and commercially reuse the software, but the copyright notice and license text must stay with copies or substantial portions of it. See the LICENSE file in the DB Craft root directory for the full terms."
+      },
+      "fr-FR": {
+        pageTitle: "Aide DB Craft",
+        languageLabel: "Langue : Francais",
+        heroTitle: "Aide DB Craft",
+        heroSubtitle: "Cette page s'ouvre depuis l'entree Aide de DB Craft afin que vous puissiez lire le guide sans interrompre votre modelisation. Elle est mise a jour pour la synchronisation par projet, la sauvegarde automatique, le relais vers Codex, les presets IA et l'aperçu SQL.",
+        heroCards: [
+          { title: "Flux recommande", text: "Creer ou ouvrir un modele -> Ajouter une table / creation IA -> Ajouter les relations -> Verification syntaxe -> Synchroniser -> Lire le SQL" },
+          { title: "Synchronisation projet", text: "La synchronisation ecrit directement le modele et le SQL dans le repertoire du projet courant. L'autorisation navigateur n'est en general plus necessaire." },
+          { title: "Relais vers Codex", text: "L'action Envoyer a Codex ecrit un fichier dbcraft-codex-handoff.md dans le projet courant pour permettre a Codex de reprendre la suite." },
+          { title: "Regle des champs modele", text: "Les champs de modele sont ajoutes aux tables manuelles, IA et SQL. Ils restent visibles par defaut sauf suppression explicite." },
+          { title: "Licence open source", text: "DB Craft est desormais publie sous licence MIT. Le texte complet est disponible dans le fichier LICENSE a la racine du projet." }
+        ],
+        quickStartTitle: "Demarrage rapide",
+        quickStartNote: "Quand Codex cree ou modifie des tables pour ce projet, DB Craft considere le fichier .dbmodel.json du projet comme source de verite, et la page courante essaie de suivre automatiquement.",
+        quickStartSteps: [
+          {
+            title: "Verifier le projet courant",
+            text: "La zone superieure affiche le projet courant, le chemin du projet et le fichier modele courant. Ce sont les indicateurs principaux de l'emplacement de votre diagramme.",
+            chips: ["Projet courant", "Chemin du projet", "Fichier modele courant"]
+          },
+          {
+            title: "Creer ou ouvrir un modele",
+            text: "Saisissez un nom de modele a gauche et choisissez un type de base, ou utilisez Fichier -> Ouvrir pour charger un .dbmodel.json deja present dans le projet courant.",
+            chips: ["MySQL 8", "PostgreSQL 14", "SQLite", "MSSQL"]
+          },
+          {
+            title: "Commencer la modelisation",
+            text: "Utilisez Ajouter table pour un schema manuel, Creation par SQL pour coller un CREATE TABLE, ou Creation IA pour generer un premier brouillon a partir d'un besoin.",
+          },
+          {
+            title: "Ajouter les relations et ranger le canevas",
+            text: "Creez les relations en faisant glisser les points d'ancrage des cartes de table ou depuis le panneau de relations. Utilisez Mise en page auto puis Adapter si le canevas devient charge.",
+          },
+          {
+            title: "Synchroniser et consulter le SQL",
+            text: "L'action Synchroniser ecrit le modele et le SQL dans le projet courant puis ouvre immediatement une fenetre d'aperçu SQL dans DB Craft.",
+          }
+        ],
+        featureTitle: "Fonctionnalites principales",
+        features: [
+          {
+            title: "Synchroniser vers le projet courant",
+            text: "La synchronisation ne depend plus de l'autorisation de repertoire du navigateur. DB Craft re-ecrit le modele courant dans le projet actif et genere le fichier SQL correspondant."
+          },
+          {
+            title: "Sauvegarde automatique du modele",
+            text: "Quand vous modifiez tables, champs, relations ou disposition, DB Craft sauvegarde automatiquement le .dbmodel.json apres un court temps d'inactivite."
+          },
+          {
+            title: "Rafraichissement automatique du diagramme",
+            text: "Si le fichier modele du projet change, DB Craft essaie de recharger la version la plus recente dans la page courante afin d'eviter les rafraichissements manuels repetitifs."
+          },
+          {
+            title: "Presets de modeles IA",
+            text: "Config IA et Creation IA proposent des presets pour OpenAI, Kimi, DeepSeek et Qwen, avec prise en charge d'une Base URL compatible personnalisee."
+          },
+          {
+            title: "Continuer sans cle API",
+            text: "Creation IA peut basculer vers Envoyer a Codex. DB Craft prepare la demande et ecrit dbcraft-codex-handoff.md pour la reprise."
+          },
+          {
+            title: "Champs modele ajoutes automatiquement",
+            text: "Les tables generees par IA ou importees depuis SQL recoivent aussi les champs du modele global, sans doublonner les colonnes deja creees."
+          }
+        ],
+        shortcutTitle: "Raccourcis",
+        shortcuts: [
+          { key: "Ctrl+S", title: "Enregistrer le modele", text: "Enregistre le modele courant dans le repertoire du projet." },
+          { key: "Ctrl+Alt+S", title: "Synchroniser", text: "Reecrit le modele et le SQL dans le projet puis ouvre l'aperçu SQL." },
+          { key: "Ctrl+O", title: "Ouvrir un modele", text: "Ouvre un fichier modele deja present dans le projet courant." },
+          { key: "Alt+A", title: "Ajouter une table", text: "Cree rapidement une nouvelle table." },
+          { key: "Alt+L", title: "Creation IA", text: "Genere une premiere structure a partir d'un besoin ou transfere la suite a Codex." },
+          { key: "Alt+J", title: "Creation par SQL", text: "Colle un CREATE TABLE et genere les cartes de table." },
+          { key: "Alt+Q", title: "Verification syntaxe", text: "Valide champs, index et definitions associees du modele courant." },
+          { key: "Ctrl+Alt+E", title: "Exporter SQL", text: "Exporte le SQL correspondant au type de base courant." },
+          { key: "F1", title: "Aide", text: "Ouvre cette page d'aide." }
+        ],
+        faqTitle: "Questions frequentes",
+        faqs: [
+          {
+            title: "Pourquoi Codex a modifie le modele mais pas le diagramme immediatement ?",
+            text: "DB Craft considere maintenant le .dbmodel.json du projet comme source de verite et tente de rafraichir automatiquement la page. Si vous editez localement le meme modele, le rafraichissement reste prudent pour eviter d'ecraser vos modifications en cours."
+          },
+          {
+            title: "Pourquoi vois-je encore des champs comme Field1 ?",
+            text: "Ils proviennent des champs du modele global. La regle actuelle est de conserver ces champs par defaut, y compris pour Creation IA et Creation par SQL."
+          },
+          {
+            title: "Puis-je utiliser Creation IA sans cle API ?",
+            text: "Oui. Utilisez Envoyer a Codex dans la boite de dialogue. DB Craft ecrit alors un fichier dbcraft-codex-handoff.md dans le projet pour l'etape suivante."
+          },
+          {
+            title: "Pourquoi cette page suit-elle la langue de l'interface ?",
+            text: "La page lit d'abord le parametre lang de l'URL. S'il est absent, elle reprend la langue enregistree par DB Craft, afin de rester coherente avec l'application."
+          }
+        ],
+        licenseTitle: "Licence open source",
+        licenseText: "DB Craft est distribue sous licence MIT. Vous pouvez utiliser, modifier, distribuer et reutiliser commercialement le logiciel, mais vous devez conserver la mention de copyright et le texte de licence dans les copies ou parties substantielles. Consultez le fichier LICENSE a la racine de DB Craft pour le texte complet."
+      }
+    };
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function getCurrentLanguage() {
+      const params = new URLSearchParams(window.location.search);
+      const fromQuery = params.get("lang");
+      if (SUPPORTED_LANGUAGES.includes(fromQuery)) return fromQuery;
+      try {
+        const fromStorage = String(localStorage.getItem(MANUAL_LANGUAGE_KEY) || "").trim();
+        if (SUPPORTED_LANGUAGES.includes(fromStorage)) return fromStorage;
+      } catch {
+        // ignore localStorage errors
+      }
+      return DEFAULT_LANGUAGE;
+    }
+
+    function renderCards(container, items) {
+      container.innerHTML = items.map((item) => `
+        <article class="hero-card">
+          <strong>${escapeHtml(item.title)}</strong>
+          <span>${escapeHtml(item.text)}</span>
+        </article>
+      `).join("");
+    }
+
+    function renderSteps(container, items) {
+      container.innerHTML = items.map((item, index) => `
+        <article class="step">
+          <div class="step-no">${index + 1}</div>
+          <div>
+            <h3>${escapeHtml(item.title)}</h3>
+            <p>${escapeHtml(item.text)}</p>
+            ${Array.isArray(item.chips) && item.chips.length ? `
+              <div class="chip-row">
+                ${item.chips.map((chip) => `<span class="chip">${escapeHtml(chip)}</span>`).join("")}
+              </div>
+            ` : ""}
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderFeatureList(container, items) {
+      container.innerHTML = items.map((item) => `
+        <article class="feature-item">
+          <h3>${escapeHtml(item.title)}</h3>
+          <p>${escapeHtml(item.text)}</p>
+        </article>
+      `).join("");
+    }
+
+    function renderShortcutList(container, items) {
+      container.innerHTML = items.map((item) => `
+        <article class="shortcut-item">
+          <h3><span class="shortcut-key">${escapeHtml(item.key)}</span>${escapeHtml(item.title)}</h3>
+          <p>${escapeHtml(item.text)}</p>
+        </article>
+      `).join("");
+    }
+
+    function renderFaqList(container, items) {
+      container.innerHTML = items.map((item) => `
+        <article class="faq-item">
+          <h3>${escapeHtml(item.title)}</h3>
+          <p>${escapeHtml(item.text)}</p>
+        </article>
+      `).join("");
+    }
+
+    function renderManual() {
+      const language = getCurrentLanguage();
+      const copy = MANUAL_I18N[language] || MANUAL_I18N[DEFAULT_LANGUAGE];
+
+      document.documentElement.lang = language;
+      document.title = copy.pageTitle;
+      document.getElementById("languagePill").textContent = copy.languageLabel;
+      document.getElementById("heroTitle").textContent = copy.heroTitle;
+      document.getElementById("heroSubtitle").textContent = copy.heroSubtitle;
+      document.getElementById("quickStartTitle").textContent = copy.quickStartTitle;
+      document.getElementById("quickStartNote").textContent = copy.quickStartNote;
+      document.getElementById("featureTitle").textContent = copy.featureTitle;
+      document.getElementById("shortcutTitle").textContent = copy.shortcutTitle;
+      document.getElementById("faqTitle").textContent = copy.faqTitle;
+      document.getElementById("licenseTitle").textContent = copy.licenseTitle;
+      document.getElementById("licenseText").textContent = copy.licenseText;
+
+      renderCards(document.getElementById("heroCards"), copy.heroCards);
+      renderSteps(document.getElementById("quickStartList"), copy.quickStartSteps);
+      renderFeatureList(document.getElementById("featureList"), copy.features);
+      renderShortcutList(document.getElementById("shortcutList"), copy.shortcuts);
+      renderFaqList(document.getElementById("faqList"), copy.faqs);
+    }
+
+    renderManual();
+  </script>
+</body>
+</html>

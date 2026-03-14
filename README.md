@@ -34,6 +34,34 @@ It is a good fit when you want to:
 
 ## Repository Layout
 
+### Application Source
+
+The DB Craft app source now lives under:
+
+- [app](./app)
+
+Main files:
+
+- [app/index.html](./app/index.html)
+- [app/app.js](./app/app.js)
+- [app/styles.css](./app/styles.css)
+- [app/server.js](./app/server.js)
+- [app/src/core](./app/src/core)
+- [app/samples](./app/samples)
+
+### Skill Definition
+
+The Codex skill definition and supporting references live under:
+
+- [skill](./skill)
+
+Main files:
+
+- [skill/SKILL.md](./skill/SKILL.md)
+- [skill/agents/openai.yaml](./skill/agents/openai.yaml)
+- [skill/scripts/launch-dbdesigner.ps1](./skill/scripts/launch-dbdesigner.ps1)
+- [skill/references](./skill/references)
+
 ### Marketplace Docs
 
 The marketplace-facing documents live under:

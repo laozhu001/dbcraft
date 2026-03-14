@@ -1,0 +1,499 @@
+{
+  "format": "dbdesigner-model",
+  "version": 1,
+  "savedAt": "2026-03-14T07:55:12.790Z",
+  "model": {
+    "name": "sample",
+    "dbType": "MySQL 8",
+    "tables": [
+      {
+        "id": "table_sample_student",
+        "name": "student",
+        "code": "student",
+        "comment": "Student",
+        "x": 120,
+        "y": 180,
+        "fields": [
+          {
+            "id": "field_sample_student_id",
+            "name": "id",
+            "code": "id",
+            "dataType": "bigint",
+            "length": "",
+            "precision": "",
+            "scale": "",
+            "primaryKey": true,
+            "notNull": true,
+            "autoIncrement": true,
+            "defaultValue": "",
+            "comment": "Primary key"
+          },
+          {
+            "id": "field_sample_student_no",
+            "name": "Student No",
+            "code": "student_no",
+            "dataType": "varchar",
+            "length": "20",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": true,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Student number"
+          },
+          {
+            "id": "field_sample_student_name",
+            "name": "Name",
+            "code": "name",
+            "dataType": "varchar",
+            "length": "50",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": true,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Student name"
+          },
+          {
+            "id": "field_sample_student_age",
+            "name": "Age",
+            "code": "age",
+            "dataType": "int",
+            "length": "",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": false,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Age"
+          },
+          {
+            "id": "field_sample_student_class_name",
+            "name": "Class",
+            "code": "class_name",
+            "dataType": "varchar",
+            "length": "50",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": false,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Class name"
+          },
+          {
+            "id": "field_sample_student_teacher_id",
+            "name": "Teacher ID",
+            "code": "teacher_id",
+            "dataType": "bigint",
+            "length": "",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": true,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Homeroom teacher"
+          },
+          {
+            "id": "field_sample_student_field1",
+            "name": "Field1",
+            "code": "Field1",
+            "dataType": "varchar",
+            "length": "50",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": false,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Template field"
+          }
+        ],
+        "indexes": [
+          {
+            "id": "idx_sample_student_pk",
+            "name": "pk_student",
+            "unique": true,
+            "method": "btree",
+            "columns": [
+              "field_sample_student_id"
+            ],
+            "clustered": true,
+            "isPrimary": true
+          }
+        ]
+      },
+      {
+        "id": "table_sample_teacher",
+        "name": "teacher",
+        "code": "teacher",
+        "comment": "Teacher",
+        "x": 560,
+        "y": 40,
+        "fields": [
+          {
+            "id": "field_sample_teacher_id",
+            "name": "id",
+            "code": "id",
+            "dataType": "bigint",
+            "length": "",
+            "precision": "",
+            "scale": "",
+            "primaryKey": true,
+            "notNull": true,
+            "autoIncrement": true,
+            "defaultValue": "",
+            "comment": "Primary key"
+          },
+          {
+            "id": "field_sample_teacher_job_no",
+            "name": "Job No",
+            "code": "job_no",
+            "dataType": "varchar",
+            "length": "20",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": true,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Teacher job number"
+          },
+          {
+            "id": "field_sample_teacher_name",
+            "name": "Name",
+            "code": "name",
+            "dataType": "varchar",
+            "length": "50",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": true,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Teacher name"
+          },
+          {
+            "id": "field_sample_teacher_phone",
+            "name": "Phone",
+            "code": "phone",
+            "dataType": "varchar",
+            "length": "20",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": false,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Phone number"
+          },
+          {
+            "id": "field_sample_teacher_field1",
+            "name": "Field1",
+            "code": "Field1",
+            "dataType": "varchar",
+            "length": "50",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": false,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Template field"
+          }
+        ],
+        "indexes": [
+          {
+            "id": "idx_sample_teacher_pk",
+            "name": "pk_teacher",
+            "unique": true,
+            "method": "btree",
+            "columns": [
+              "field_sample_teacher_id"
+            ],
+            "clustered": true,
+            "isPrimary": true
+          }
+        ]
+      },
+      {
+        "id": "table_sample_course",
+        "name": "course",
+        "code": "course",
+        "comment": "Course",
+        "x": 970,
+        "y": 40,
+        "fields": [
+          {
+            "id": "field_sample_course_id",
+            "name": "id",
+            "code": "id",
+            "dataType": "bigint",
+            "length": "",
+            "precision": "",
+            "scale": "",
+            "primaryKey": true,
+            "notNull": true,
+            "autoIncrement": true,
+            "defaultValue": "",
+            "comment": "Primary key"
+          },
+          {
+            "id": "field_sample_course_code",
+            "name": "Course Code",
+            "code": "course_code",
+            "dataType": "varchar",
+            "length": "20",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": true,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Course code"
+          },
+          {
+            "id": "field_sample_course_name",
+            "name": "Course Name",
+            "code": "course_name",
+            "dataType": "varchar",
+            "length": "100",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": true,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Course name"
+          },
+          {
+            "id": "field_sample_course_credit",
+            "name": "Credit",
+            "code": "credit",
+            "dataType": "decimal",
+            "length": "",
+            "precision": "4",
+            "scale": "1",
+            "primaryKey": false,
+            "notNull": false,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Credit"
+          },
+          {
+            "id": "field_sample_course_field1",
+            "name": "Field1",
+            "code": "Field1",
+            "dataType": "varchar",
+            "length": "50",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": false,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Template field"
+          }
+        ],
+        "indexes": [
+          {
+            "id": "idx_sample_course_pk",
+            "name": "pk_course",
+            "unique": true,
+            "method": "btree",
+            "columns": [
+              "field_sample_course_id"
+            ],
+            "clustered": true,
+            "isPrimary": true
+          }
+        ]
+      },
+      {
+        "id": "table_sample_selection",
+        "name": "student_course_selection",
+        "code": "student_course_selection",
+        "comment": "Student selects a course taught by a teacher",
+        "x": 710,
+        "y": 330,
+        "fields": [
+          {
+            "id": "field_sample_selection_id",
+            "name": "id",
+            "code": "id",
+            "dataType": "bigint",
+            "length": "",
+            "precision": "",
+            "scale": "",
+            "primaryKey": true,
+            "notNull": true,
+            "autoIncrement": true,
+            "defaultValue": "",
+            "comment": "Primary key"
+          },
+          {
+            "id": "field_sample_selection_student_id",
+            "name": "Student ID",
+            "code": "student_id",
+            "dataType": "bigint",
+            "length": "",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": true,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "FK -> student.id"
+          },
+          {
+            "id": "field_sample_selection_teacher_id",
+            "name": "Teacher ID",
+            "code": "teacher_id",
+            "dataType": "bigint",
+            "length": "",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": true,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "FK -> teacher.id"
+          },
+          {
+            "id": "field_sample_selection_course_id",
+            "name": "Course ID",
+            "code": "course_id",
+            "dataType": "bigint",
+            "length": "",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": true,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "FK -> course.id"
+          },
+          {
+            "id": "field_sample_selection_selected_at",
+            "name": "Selected At",
+            "code": "selected_at",
+            "dataType": "datetime",
+            "length": "",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": false,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Selection time"
+          },
+          {
+            "id": "field_sample_selection_field1",
+            "name": "Field1",
+            "code": "Field1",
+            "dataType": "varchar",
+            "length": "50",
+            "precision": "",
+            "scale": "",
+            "primaryKey": false,
+            "notNull": false,
+            "autoIncrement": false,
+            "defaultValue": "",
+            "comment": "Template field"
+          }
+        ],
+        "indexes": [
+          {
+            "id": "idx_sample_selection_pk",
+            "name": "pk_student_course_selection",
+            "unique": true,
+            "method": "btree",
+            "columns": [
+              "field_sample_selection_id"
+            ],
+            "clustered": true,
+            "isPrimary": true
+          }
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel_sample_teacher_student",
+        "name": "Homeroom",
+        "cardinality": "1:N",
+        "sourceTableId": "table_sample_teacher",
+        "targetTableId": "table_sample_student",
+        "foreignKey": {
+          "name": "fk_student_teacher",
+          "fromTableId": "table_sample_student",
+          "toTableId": "table_sample_teacher",
+          "fromFieldIds": [
+            "field_sample_student_teacher_id"
+          ],
+          "toFieldIds": [
+            "field_sample_teacher_id"
+          ]
+        }
+      },
+      {
+        "id": "rel_sample_student_selection",
+        "name": "Student Selection",
+        "cardinality": "1:N",
+        "sourceTableId": "table_sample_student",
+        "targetTableId": "table_sample_selection",
+        "foreignKey": {
+          "name": "fk_selection_student",
+          "fromTableId": "table_sample_selection",
+          "toTableId": "table_sample_student",
+          "fromFieldIds": [
+            "field_sample_selection_student_id"
+          ],
+          "toFieldIds": [
+            "field_sample_student_id"
+          ]
+        }
+      },
+      {
+        "id": "rel_sample_teacher_selection",
+        "name": "Teacher Selection",
+        "cardinality": "1:N",
+        "sourceTableId": "table_sample_teacher",
+        "targetTableId": "table_sample_selection",
+        "foreignKey": {
+          "name": "fk_selection_teacher",
+          "fromTableId": "table_sample_selection",
+          "toTableId": "table_sample_teacher",
+          "fromFieldIds": [
+            "field_sample_selection_teacher_id"
+          ],
+          "toFieldIds": [
+            "field_sample_teacher_id"
+          ]
+        }
+      },
+      {
+        "id": "rel_sample_course_selection",
+        "name": "Course Selection",
+        "cardinality": "1:N",
+        "sourceTableId": "table_sample_course",
+        "targetTableId": "table_sample_selection",
+        "foreignKey": {
+          "name": "fk_selection_course",
+          "fromTableId": "table_sample_selection",
+          "toTableId": "table_sample_course",
+          "fromFieldIds": [
+            "field_sample_selection_course_id"
+          ],
+          "toFieldIds": [
+            "field_sample_course_id"
+          ]
+        }
+      }
+    ]
+  }
+}

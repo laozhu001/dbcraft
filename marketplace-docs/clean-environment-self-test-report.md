@@ -7,7 +7,7 @@ Date: 2026-03-14
 - OS: Windows
 - Test machine: current maintainer machine, with browser storage manually cleared before validation
 - Package:
-  - `D:\DBdesigner\marketplace-assets\dbcraft-marketplace-submission.zip`
+  - `dbcraft-marketplace-submission.zip`
 
 ## Summary
 

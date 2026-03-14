@@ -1,0 +1,219 @@
+﻿<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DB Craft v1</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-top">
+      <div class="top-brand">
+        <div class="logo-badge" aria-hidden="true">DB</div>
+        <div class="brand-text">
+          <h1>DB Craft</h1>
+          <p id="brandSubtitle">Database Design Tool</p>
+        </div>
+        <div class="language-switch">
+          <label for="languageSelect">Language</label>
+          <select id="languageSelect" aria-label="Language">
+            <option value="zh-CN">中文</option>
+            <option value="en-US" selected>English</option>
+            <option value="fr-FR">Français</option>
+          </select>
+        </div>
+      </div>
+      <div class="top-meta">
+        <div class="top-meta-row">
+          <h2 id="activeModelTitle">No Model Selected</h2>
+          <p id="workspaceMeta">Current Project: Not Set</p>
+          <p id="workspacePathMeta">Project Path: Not Filled</p>
+          <div id="workspaceGuideBar" class="workspace-guide" hidden>
+            <div class="workspace-guide-copy">
+              <strong id="workspaceGuideTitle">Workspace Sync Tip</strong>
+              <span id="workspaceGuideText">Table creation and updates in this workspace should stay reflected in the current diagram. After changes, use Save + Sync.</span>
+            </div>
+            <button id="workspaceGuideDismissBtn" type="button" class="workspace-guide-dismiss" aria-label="Dismiss tip">Got it</button>
+          </div>
+        </div>
+        <p id="activeModelMeta">-</p>
+        <p id="modelFileMeta">Current Model File: Not yet saved to workspace</p>
+      </div>
+    </header>
+
+    <section class="toolbar app-middle">
+      <div class="toolbar-shell">
+        <nav class="menu-bar" id="menuBar" aria-label="主菜单">
+          <div class="menu-item">
+            <button type="button" class="menu-trigger">文件</button>
+            <div class="menu-panel">
+              <button type="button" data-menu-action="file-new-mysql8"><span>新建（MySQL 8）</span><span class="menu-shortcut">Ctrl+Alt+1</span></button>
+              <button type="button" data-menu-action="file-new-postgresql14"><span>新建（PostgreSQL 14）</span><span class="menu-shortcut">Ctrl+Alt+2</span></button>
+              <button type="button" data-menu-action="file-new-sqlite"><span>新建（SQLite）</span><span class="menu-shortcut">Ctrl+Alt+3</span></button>
+              <button type="button" data-menu-action="file-new-mssql"><span>新建（MSSQL）</span><span class="menu-shortcut">Ctrl+Alt+4</span></button>
+              <hr />
+              <button type="button" data-menu-action="file-open"><span>打开</span><span class="menu-shortcut">Ctrl+O</span></button>
+              <button type="button" data-menu-action="file-save">
+                <span>保存</span>
+                <span class="menu-shortcut">Ctrl+S</span>
+              </button>
+              <button type="button" data-menu-action="file-sync-workspace"><span>保存并同步到当前工程</span><span class="menu-shortcut">Ctrl+Alt+S</span></button>
+              <button type="button" data-menu-action="file-save-as"><span>另存为</span><span class="menu-shortcut">Ctrl+Shift+S</span></button>
+              <button type="button" data-menu-action="file-close"><span>关闭</span><span class="menu-shortcut">Ctrl+Alt+W</span></button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <button type="button" class="menu-trigger">编辑</button>
+            <div class="menu-panel">
+              <button type="button" data-menu-action="edit-undo"><span>撤销操作</span><span class="menu-shortcut">Ctrl+Z</span></button>
+              <button type="button" data-menu-action="edit-redo"><span>恢复</span><span class="menu-shortcut">Ctrl+Y</span></button>
+              <button type="button" data-menu-action="edit-clear-all"><span>全部清除</span><span class="menu-shortcut">Ctrl+Shift+Del</span></button>
+              <hr />
+              <button type="button" data-menu-action="edit-cut"><span>剪切</span><span class="menu-shortcut">Ctrl+X</span></button>
+              <button type="button" data-menu-action="edit-copy"><span>复制</span><span class="menu-shortcut">Ctrl+C</span></button>
+              <button type="button" data-menu-action="edit-paste"><span>粘贴</span><span class="menu-shortcut">Ctrl+V</span></button>
+              <button type="button" data-menu-action="edit-clone"><span>克隆</span><span class="menu-shortcut">Ctrl+D</span></button>
+              <button type="button" data-menu-action="edit-delete"><span>删除</span><span class="menu-shortcut">Del</span></button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <button type="button" class="menu-trigger">模型</button>
+            <div class="menu-panel">
+              <button type="button" data-menu-action="model-template"><span>模板表</span><span class="menu-shortcut">Alt+T</span></button>
+              <button type="button" data-menu-action="model-delete"><span>删除模型</span><span class="menu-shortcut">Alt+Shift+D</span></button>
+              <button type="button" data-menu-action="model-add-table"><span>增加表</span><span class="menu-shortcut">Alt+A</span></button>
+              <button type="button" data-menu-action="model-ai-table"><span>AI建表</span><span class="menu-shortcut">Alt+L</span></button>
+              <button type="button" data-menu-action="model-script-table"><span>脚本建表</span><span class="menu-shortcut">Alt+J</span></button>
+              <button type="button" data-menu-action="model-syntax-check"><span>语法检查</span><span class="menu-shortcut">Alt+Q</span></button>
+              <button type="button" data-menu-action="model-auto-layout"><span>自动排列表</span><span class="menu-shortcut">Alt+R</span></button>
+              <button type="button" data-menu-action="model-fit-view"><span>适应窗口</span><span class="menu-shortcut">Ctrl+0</span></button>
+              <button type="button" data-menu-action="model-export-image"><span>保存为图片</span><span class="menu-shortcut">Ctrl+Alt+P</span></button>
+              <button type="button" data-menu-action="model-export-sql"><span>导出SQL</span><span class="menu-shortcut">Ctrl+Alt+E</span></button>
+              <button type="button" data-menu-action="model-table"><span>表</span><span class="menu-shortcut">Alt+B</span></button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <button type="button" class="menu-trigger">设置</button>
+            <div class="menu-panel">
+              <button type="button" data-menu-action="settings-workspace"><span>切换工程目录</span><span class="menu-shortcut">Alt+W</span></button>
+              <button type="button" data-menu-action="settings-table-view"><span>表显示模式</span><span class="menu-shortcut">Alt+H</span></button>
+              <button type="button" data-menu-action="settings-ai-config"><span>AI配置</span><span class="menu-shortcut">Alt+K</span></button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <button type="button" class="menu-trigger">帮助</button>
+            <div class="menu-panel">
+              <button type="button" data-menu-action="help-help"><span>帮助</span><span class="menu-shortcut">F1</span></button>
+              <button type="button" data-menu-action="help-about"><span>关于</span><span class="menu-shortcut">Shift+F1</span></button>
+            </div>
+          </div>
+        </nav>
+
+        <div class="toolbar-main-row">
+          <div class="toolbar-quick-actions" id="toolbarQuickActions">
+            <div class="toolbar-group" title="文件">
+              <button id="openModelBtn" type="button" class="tool-icon-btn" title="打开模型 (Ctrl+O)" aria-label="打开模型"><span aria-hidden="true">📂</span></button>
+              <button id="saveModelBtn" type="button" class="tool-icon-btn" title="保存模型 (Ctrl+S)" aria-label="保存模型"><span aria-hidden="true">💾</span></button>
+              <button id="syncModelBtn" type="button" class="tool-icon-btn with-label" title="保存并同步到当前工程 (Ctrl+Alt+S)" aria-label="保存并同步到当前工程"><span class="tool-icon-glyph" aria-hidden="true">⇄</span><span class="tool-icon-name">同步</span></button>
+            </div>
+
+            <div class="toolbar-group" title="模型">
+              <button id="addTableButton" type="button" class="tool-icon-btn with-label" title="增加表 (Alt+A)" aria-label="增加表"><span class="tool-icon-glyph" aria-hidden="true">▦+</span><span class="tool-icon-name">加表</span></button>
+              <button type="button" class="tool-icon-btn with-label" data-menu-action="model-ai-table" title="AI建表 (Alt+L)" aria-label="AI建表"><span class="tool-icon-glyph" aria-hidden="true">AI</span><span class="tool-icon-name">AI建表</span></button>
+              <button type="button" class="tool-icon-btn with-label" data-menu-action="model-script-table" title="脚本建表 (Alt+J)" aria-label="脚本建表"><span class="tool-icon-glyph" aria-hidden="true">SQL</span><span class="tool-icon-name">脚本建表</span></button>
+              <button type="button" class="tool-icon-btn with-label" data-menu-action="model-syntax-check" title="语法检查 (Alt+Q)" aria-label="语法检查"><span class="tool-icon-glyph" aria-hidden="true">✓</span><span class="tool-icon-name">语法检查</span></button>
+              <button type="button" class="tool-icon-btn with-label" data-menu-action="model-auto-layout" title="自动排列表 (Alt+R)" aria-label="自动排列表"><span class="tool-icon-glyph" aria-hidden="true">≋</span><span class="tool-icon-name">整理</span></button>
+              <button id="exportSqlBtn" type="button" class="tool-icon-btn with-label" title="导出 SQL (Ctrl+Alt+E)" aria-label="导出 SQL"><span class="tool-icon-glyph" aria-hidden="true">⤓</span><span class="tool-icon-name">导出</span></button>
+            </div>
+
+            <div class="toolbar-group toolbar-group-codex" title="交给Codex">
+              <button id="handoffCodexBtn" type="button" class="tool-icon-btn with-label tool-icon-btn-primary" data-menu-action="help-codex" title="交给Codex (Ctrl+Alt+C)" aria-label="交给Codex"><span class="tool-icon-glyph" aria-hidden="true">C</span><span class="tool-icon-name">交给Codex</span></button>
+            </div>
+
+            <div class="toolbar-group toolbar-group-utility" title="设置与帮助">
+              <button id="setWorkspaceBtn" type="button" class="tool-icon-btn with-label" title="切换工程目录 (Alt+W)" aria-label="切换工程目录"><span class="tool-icon-glyph" aria-hidden="true">📁</span><span class="tool-icon-name">工程</span></button>
+              <button type="button" class="tool-icon-btn with-label" data-menu-action="settings-ai-config" title="AI配置 (Alt+K)" aria-label="AI配置"><span class="tool-icon-glyph" aria-hidden="true">🔑</span><span class="tool-icon-name">AI配置</span></button>
+              <button type="button" class="tool-icon-btn with-label" data-menu-action="help-help" title="帮助 (F1)" aria-label="帮助"><span class="tool-icon-glyph" aria-hidden="true">?</span><span class="tool-icon-name">帮助</span></button>
+            </div>
+
+            <div class="toolbar-group" title="布局">
+              <button type="button" class="tool-icon-btn with-label" data-menu-action="model-fit-view" title="适应窗口 (Ctrl+0)" aria-label="适应窗口"><span class="tool-icon-glyph" aria-hidden="true">⛶</span><span class="tool-icon-name">适配</span></button>
+              <button id="toggleSidebarBtn" class="tool-icon-btn icon-toggle-btn" type="button" title="隐藏侧边栏" aria-label="隐藏侧边栏">
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <rect class="icon-frame" x="1.5" y="1.5" width="13" height="13" rx="2"></rect>
+                  <line class="icon-divider" x1="6" y1="2" x2="6" y2="14"></line>
+                  <rect class="icon-sidebar-fill" x="2.25" y="2.25" width="3" height="11.5" rx="1"></rect>
+                </svg>
+              </button>
+              <button id="toggleInspectorBtn" class="tool-icon-btn icon-toggle-btn" type="button" title="隐藏属性栏" aria-label="隐藏属性栏">
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <rect class="icon-frame" x="1.5" y="1.5" width="13" height="13" rx="2"></rect>
+                  <line class="icon-divider" x1="10" y1="2" x2="10" y2="14"></line>
+                  <rect class="icon-inspector-fill" x="10.75" y="2.25" width="2.75" height="11.5" rx="1"></rect>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <button id="topToggleBtn" class="top-toggle-btn" type="button" title="收起顶栏" aria-label="收起顶栏">▴</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="app-bottom">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2 id="sidebarTitle">模型管理</h2>
+          <p id="sidebarDesc">支持 MySQL 8 / PostgreSQL 14 / SQLite / MSSQL</p>
+        </div>
+
+        <form id="modelForm" class="model-form">
+          <input id="modelNameInput" type="text" placeholder="模型名称" maxlength="40" />
+          <select id="dbTypeSelect">
+            <option value="MySQL 8">MySQL 8</option>
+            <option value="PostgreSQL 14">PostgreSQL 14</option>
+            <option value="SQLite">SQLite</option>
+            <option value="MSSQL">MSSQL</option>
+          </select>
+          <button type="submit" id="createModelBtn">新建模型</button>
+        </form>
+
+        <ul id="modelList" class="model-list"></ul>
+      </aside>
+      <div class="sidebar-resizer" id="sidebarResizer" title="拖动调整模型栏宽度"></div>
+
+      <div class="workspace-shell">
+        <div class="workspace-panel">
+          <div id="workspace" class="workspace">
+            <div id="workspaceCanvas" class="workspace-canvas">
+              <div id="workspaceContent" class="workspace-content">
+                <svg id="relationLayer" class="relation-layer"></svg>
+                <div id="tableLayer" class="table-layer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="zoom-controls" id="zoomControls">
+            <button type="button" id="zoomOutBtn" title="缩小">-</button>
+            <div class="zoom-level" id="zoomLevel">100%</div>
+            <button type="button" id="zoomInBtn" title="放大">+</button>
+            <button type="button" id="zoomResetBtn" title="重置缩放">100</button>
+            <button type="button" id="zoomFitBtn" title="适应模型">Fit</button>
+          </div>
+        </div>
+
+        <div class="resizer" id="inspectorResizer" title="拖动调整宽度"></div>
+
+        <aside class="inspector" id="inspector"></aside>
+      </div>
+    </section>
+  </div>
+
+  <script src="src/core/constants.js"></script>
+  <script src="src/core/utils.js"></script>
+  <script src="src/core/model.js"></script>
+  <script src="src/core/storage.js"></script>
+  <script src="src/core/sql.js"></script>
+  <script src="src/core/fileio.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
